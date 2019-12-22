@@ -1,17 +1,11 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   template: `
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <span>Proces ETL - projekt z przedmiotu Hurtownie Danych 2019/2020</span>
-      </mat-toolbar-row>
-    </mat-toolbar>
+    <app-header></app-header>
     <router-outlet></router-outlet>
   `,
-  styleUrls: ['./app.component.scss']
+  styleUrls: ["./app.component.scss"]
 })
-export class AppComponent {
-  title = 'HDP-frontend';
-}
+export class AppComponent {}
