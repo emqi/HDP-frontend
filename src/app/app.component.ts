@@ -4,7 +4,11 @@ import { Component } from "@angular/core";
   selector: "app-root",
   template: `
     <app-header></app-header>
-    <router-outlet></router-outlet>
+    <div class='content-container mat-elevation-z1'>
+      <app-controls></app-controls>
+      <router-outlet></router-outlet>
+    <div>
+    <app-footer></app-footer>
   `,
   styleUrls: ["./app.component.scss"]
 })

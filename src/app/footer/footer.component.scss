@@ -1,0 +1,16 @@
+mat-toolbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 32px;
+  z-index: 2;
+}
+
+.copyright {
+    font-size: small;
+    color: lighten(#000, 67%);
+}
