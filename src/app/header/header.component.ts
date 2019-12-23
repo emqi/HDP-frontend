@@ -7,7 +7,7 @@ import { DomSanitizer } from "@angular/platform-browser";
   template: `
     <mat-toolbar color="primary" class='mat-elevation-z6'>
       <div class="toolbar-container">
-        <span
+        <span class='title'
           >Proces ETL - projekt z przedmiotu Hurtownie Danych 2019/2020</span
         >
         <a

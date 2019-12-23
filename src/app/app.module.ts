@@ -8,14 +8,18 @@ import { MaterialModule } from './material';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ControlsComponent } from './controls/controls.component'
+import { ControlsComponent } from './controls/controls.component';
+import { OutputComponent } from './output/output.component';
+import { ProgressBarComponent } from './output/progress-bar/progress-bar.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ControlsComponent
+    ControlsComponent,
+    OutputComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,

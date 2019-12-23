@@ -17,6 +17,11 @@ mat-toolbar {
   a {
     mat-icon {
       margin-right: 5px;
+      pointer-events: none;
     }
   }
+}
+
+.title {
+  overflow: hidden;
 }

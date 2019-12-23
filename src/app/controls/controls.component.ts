@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-controls",
@@ -9,15 +9,15 @@ import { Component, OnInit } from "@angular/core";
           <mat-card-title>Panel kontrolny</mat-card-title>
           <mat-card-content>
             <div class='input-container'>
-              <input matInput placeholder="Szukana fraza" type="search"/>
+              <input matInput placeholder="Szukana fraza" type="search" [disabled]='isClicked'/>
             </div>
             <div class="buttons-container">
-              <button mat-stroked-button color="primary" class="top-row">
+              <button mat-stroked-button color="primary" class="top-row" (click)="onClick()" [disabled]='isClicked'>
                 Kompletny proces ETL
               </button>
-              <button mat-stroked-button color="primary" class="bottom-row-extract">Extract</button>
-              <button mat-stroked-button color="primary" class="bottom-row-transfer">Transform</button>
-              <button mat-stroked-button color="primary" class="bottom-row-load">Load</button>
+              <button mat-stroked-button color="primary" class="bottom-row-extract" (click)="onClick()" [disabled]='isClicked'>Extract</button>
+              <button mat-stroked-button color="primary" class="bottom-row-transfer" (click)="onClick()" [disabled]='isClicked'>Transform</button>
+              <button mat-stroked-button color="primary" class="bottom-row-load" (click)="onClick()" [disabled]='isClicked'>Load</button>
             </div>
           </mat-card-content>
         </mat-card>
@@ -26,4 +26,12 @@ import { Component, OnInit } from "@angular/core";
   `,
   styleUrls: ["./controls.component.scss"]
 })
-export class ControlsComponent {}
+export class ControlsComponent {
+  @Output() clicked = new EventEmitter<boolean>();
+  isClicked = false;
+
+  onClick() {
+    this.isClicked = !this.isClicked;
+    this.clicked.emit(this.isClicked);
+  }
+}
