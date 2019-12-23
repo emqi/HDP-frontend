@@ -1,7 +1,58 @@
 mat-toolbar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    height: 80px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 223px;
+}
+
+mat-card {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+mat-card-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 15px;
+}
+
+.buttons-container {
+  display: grid;
+  grid-row: 2;
+  grid-template-areas:
+    "top-row top-row top-row"
+    "bottom-row-extract bottom-row-transfer bottom-row-load";
+  grid-row-gap: 2px;
+  grid-column-gap: 2px;
+}
+
+.top-row {
+  grid-area: top-row;
+}
+
+.bottom-row-extract {
+  grid-area: bottom-row-extract;
+}
+
+.bottom-row-transfer {
+  grid-area: bottom-row-transfer;
+}
+
+.bottom-row-load {
+  grid-area: bottom-row-load;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 15px;
+}
+
+input {
+  font-size: larger;
+}
