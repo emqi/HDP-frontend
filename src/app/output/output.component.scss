@@ -1,0 +1,17 @@
+.info {
+  font-size: x-large;
+  color: lighten(#000, 67%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.default-container {
+  height: calc(0.4 * 100vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
