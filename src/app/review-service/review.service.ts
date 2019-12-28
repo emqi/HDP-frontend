@@ -25,14 +25,7 @@ export class ReviewService {
   constructor(private http: HttpClient) {}
 
   getReviews(product: string): Observable<Review[]> {
-    let params = new HttpParams();
-    params = params
-      .set("phrase", product)
-      .set("pagesToSearch", "1")
-      .set("mapping", "11");
-    return this.http.get<Review[]>("http://localhost:3000/extractPhrase", {
-      params: params
-    });
+    return this.http.get<Review[]>("http://localhost:3000/displayData");
   }
 
   startETL(product: string): Observable<number> {
@@ -40,8 +33,7 @@ export class ReviewService {
     params = params
       .set("phrase", product)
       .set("pagesToSearch", "1")
-      .set("mapping", "123");
-    return this.http.get<number>("http://localhost:3000/extractPhrase", {
+    return this.http.get<number>("http://localhost:3000/etl", {
       params: params
     });
   }
@@ -51,29 +43,16 @@ export class ReviewService {
     params = params
       .set("phrase", product)
       .set("pagesToSearch", "1")
-      .set("mapping", "");
-    return this.http.get<number>("http://localhost:3000/extractPhrase", {
+    return this.http.get<number>("http://localhost:3000/extract", {
       params: params
     });
   }
+
   startTransform(product: string): Observable<number> {
-    let params = new HttpParams();
-    params = params
-      .set("phrase", product)
-      .set("pagesToSearch", "1")
-      .set("mapping", "2");
-    return this.http.get<number>("http://localhost:3000/extractPhrase", {
-      params: params
-    });
+    return this.http.get<number>("http://localhost:3000/transform");
   }
+
   startLoad(product: string): Observable<number> {
-    let params = new HttpParams();
-    params = params
-      .set("phrase", product)
-      .set("pagesToSearch", "1")
-      .set("mapping", "3");
-    return this.http.get<number>("http://localhost:3000/extractPhrase", {
-      params: params
-    });
+    return this.http.get<number>("http://localhost:3000/load");
   }
 }
