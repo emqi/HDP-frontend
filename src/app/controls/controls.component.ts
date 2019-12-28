@@ -98,7 +98,7 @@ export class ControlsComponent {
       this.isStarted.emit(true);
       this.stats = await this.reviewService.startETL(value).toPromise();
       this.etlStats.emit(this.stats);
-      this.result = await this.reviewService.getReviews(value).toPromise();
+      this.result = await this.reviewService.getReviews().toPromise();
       this.etlData.emit(this.result);
       this.isDone.emit(true);
       this.isProcessing = false;
@@ -129,7 +129,7 @@ export class ControlsComponent {
   async onTransformClick() {
     this.cleanOutput();
     this.isProcessing = true;
-    this.stats = await this.reviewService.startLoad("whatever").toPromise();
+    this.stats = await this.reviewService.startLoad().toPromise();
     this.etlStats.emit(this.stats);
     this.isDone.emit(true);
     this.isProcessing = false;
@@ -140,9 +140,9 @@ export class ControlsComponent {
   async onLoadClick() {
     this.cleanOutput();
     this.isProcessing = true;
-    this.stats = await this.reviewService.startLoad("whatever").toPromise();
+    this.stats = await this.reviewService.startLoad().toPromise();
     this.etlStats.emit(this.stats);
-    this.result = await this.reviewService.getReviews("whatever").toPromise();
+    this.result = await this.reviewService.getReviews().toPromise();
     this.etlData.emit(this.result);
     this.isDone.emit(true);
     this.isProcessing = false;

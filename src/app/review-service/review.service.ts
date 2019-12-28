@@ -18,13 +18,17 @@ export interface Review {
   price: number;
 }
 
+export interface clearResponse {
+  finished: boolean;
+}
+
 @Injectable({
   providedIn: "root"
 })
 export class ReviewService {
   constructor(private http: HttpClient) {}
 
-  getReviews(product: string): Observable<Review[]> {
+  getReviews(): Observable<Review[]> {
     return this.http.get<Review[]>("http://localhost:3000/displayData");
   }
 
@@ -48,11 +52,15 @@ export class ReviewService {
     });
   }
 
-  startTransform(product: string): Observable<number> {
+  startTransform(): Observable<number> {
     return this.http.get<number>("http://localhost:3000/transform");
   }
 
-  startLoad(product: string): Observable<number> {
+  startLoad(): Observable<number> {
     return this.http.get<number>("http://localhost:3000/load");
+  }
+
+  clearDatabase(): Observable<clearResponse> {
+    return this.http.get<clearResponse>("http://localhost:3000/clearDb");
   }
 }
