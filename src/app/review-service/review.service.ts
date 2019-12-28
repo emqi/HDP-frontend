@@ -25,14 +25,55 @@ export class ReviewService {
   constructor(private http: HttpClient) {}
 
   getReviews(product: string): Observable<Review[]> {
-    let params = new HttpParams()
-    params = params.set('phrase', product).set('pagesToSearch', '1').set('mapping', '11');
-    return this.http.get<Review[]>('http://localhost:3000/extractPhrase', {params: params})
+    let params = new HttpParams();
+    params = params
+      .set("phrase", product)
+      .set("pagesToSearch", "1")
+      .set("mapping", "11");
+    return this.http.get<Review[]>("http://localhost:3000/extractPhrase", {
+      params: params
+    });
   }
 
   startETL(product: string): Observable<number> {
-    let params = new HttpParams()
-    params = params.set('phrase', product).set('pagesToSearch', '1').set('mapping', '123');
-    return this.http.get<number>('http://localhost:3000/extractPhrase', {params: params})
+    let params = new HttpParams();
+    params = params
+      .set("phrase", product)
+      .set("pagesToSearch", "1")
+      .set("mapping", "123");
+    return this.http.get<number>("http://localhost:3000/extractPhrase", {
+      params: params
+    });
+  }
+
+  startExtract(product: string): Observable<number> {
+    let params = new HttpParams();
+    params = params
+      .set("phrase", product)
+      .set("pagesToSearch", "1")
+      .set("mapping", "");
+    return this.http.get<number>("http://localhost:3000/extractPhrase", {
+      params: params
+    });
+  }
+  startTransform(product: string): Observable<number> {
+    let params = new HttpParams();
+    params = params
+      .set("phrase", product)
+      .set("pagesToSearch", "1")
+      .set("mapping", "2");
+    return this.http.get<number>("http://localhost:3000/extractPhrase", {
+      params: params
+    });
+  }
+  startLoad(product: string): Observable<number> {
+    let params = new HttpParams();
+    params = params
+      .set("phrase", product)
+      .set("pagesToSearch", "1")
+      .set("mapping", "3");
+    return this.http.get<number>("http://localhost:3000/extractPhrase", {
+      params: params
+    });
   }
 }
