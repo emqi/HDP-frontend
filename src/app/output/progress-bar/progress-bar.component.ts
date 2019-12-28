@@ -14,7 +14,6 @@ export class ProgressBarComponent implements AfterViewInit {
   
   @HostListener("window:scroll", [])
   onWindowScroll() {
-    console.log(window.pageYOffset);
     if (!this. header.classList.contains('sticky') && window.pageYOffset > this.header.offsetTop - 64) {
       this.header.classList.add("sticky");
     } else if (window.pageYOffset < 245) {
