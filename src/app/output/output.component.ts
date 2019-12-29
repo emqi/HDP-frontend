@@ -14,7 +14,7 @@ import { Review } from "../review-service/review.service";
     <div class="output-container" *ngIf="isStarted">
       <app-progress-bar *ngIf="!isDone"></app-progress-bar>
       <div class="content-container">
-        <mat-card class="stats" *ngIf="etlStats">Statystyki: {{ etlStats }}</mat-card>
+        <mat-card class="stats">{{ etlStats }}</mat-card>
         <mat-card *ngFor="let review of etlData">
           <span>Id recenzji: {{ review.id }}</span>
           <span>Nazwa użytkownika: {{ review.reviewerusername }}</span>
@@ -37,7 +37,7 @@ import { Review } from "../review-service/review.service";
 })
 export class OutputComponent {
   @Input() isStarted = false;
-  @Input() etlStats: number;
+  @Input() etlStats: string;
   @Input() etlData: Review[];
   @Input() showWarning: boolean;
   @Input() isDone = false;

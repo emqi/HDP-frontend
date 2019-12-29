@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
 export interface Review {
   id: string;
@@ -34,9 +34,7 @@ export class ReviewService {
 
   startETL(product: string): Observable<number> {
     let params = new HttpParams();
-    params = params
-      .set("phrase", product)
-      .set("pagesToSearch", "1")
+    params = params.set("phrase", product).set("pagesToSearch", "1");
     return this.http.get<number>("http://localhost:3000/etl", {
       params: params
     });
@@ -44,9 +42,7 @@ export class ReviewService {
 
   startExtract(product: string): Observable<number> {
     let params = new HttpParams();
-    params = params
-      .set("phrase", product)
-      .set("pagesToSearch", "1")
+    params = params.set("phrase", product).set("pagesToSearch", "1");
     return this.http.get<number>("http://localhost:3000/extract", {
       params: params
     });
@@ -62,5 +58,31 @@ export class ReviewService {
 
   clearDatabase(): Observable<clearResponse> {
     return this.http.get<clearResponse>("http://localhost:3000/clearDb");
+  }
+
+  downloadCSV() {
+    return this.http
+      .get("http://localhost:3000/csv", {
+        headers: new HttpHeaders({
+          Accept: 'text/csv'
+        }),
+        responseType: "text"
+      })
+      .subscribe(response => this.downloadFile(response, "text/csv;charset=utf-8"));
+  }
+
+  downloadFile(data: any, fileType: string) {
+    let blob = new Blob(["\ufeff"+data], { type: fileType });
+    // let url = window.URL.createObjectURL(blob);
+    // let pwa = window.open(url);
+    // if (!pwa || pwa.closed || typeof pwa.closed == "undefined") {
+    //   alert("Please disable your Pop-up blocker and try again.");
+    // }
+    var a = window.document.createElement("a");
+    a.href = window.URL.createObjectURL(blob);
+    a.download = "Database.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 }

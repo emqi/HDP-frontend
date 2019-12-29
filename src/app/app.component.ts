@@ -30,7 +30,7 @@ import { Review } from "./review-service/review.service";
 })
 export class AppComponent {
   isStarted: boolean;
-  etlStats: number;
+  etlStats: string;
   etlData: Review[];
   showWarning: boolean;
   isDone: boolean;
