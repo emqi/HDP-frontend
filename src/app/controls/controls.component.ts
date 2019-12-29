@@ -130,7 +130,7 @@ export class ControlsComponent {
     this.cleanOutput();
     this.isProcessing = true;
     this.isStarted.emit(true);
-    this.stats = await this.reviewService.startLoad().toPromise();
+    this.stats = await this.reviewService.startTransform().toPromise();
     this.etlStats.emit(this.stats);
     this.isDone.emit(true);
     this.isProcessing = false;
@@ -148,7 +148,7 @@ export class ControlsComponent {
     this.etlData.emit(this.result);
     this.isDone.emit(true);
     this.isProcessing = false;
-    this.isTransformDisabled = false;
+    this.isTransformDisabled = true;
     this.isLoadDisabled = true;
   }
 
