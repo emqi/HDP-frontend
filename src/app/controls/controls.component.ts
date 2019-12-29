@@ -129,6 +129,7 @@ export class ControlsComponent {
   async onTransformClick() {
     this.cleanOutput();
     this.isProcessing = true;
+    this.isStarted.emit(true);
     this.stats = await this.reviewService.startLoad().toPromise();
     this.etlStats.emit(this.stats);
     this.isDone.emit(true);
@@ -140,6 +141,7 @@ export class ControlsComponent {
   async onLoadClick() {
     this.cleanOutput();
     this.isProcessing = true;
+    this.isStarted.emit(true);
     this.stats = await this.reviewService.startLoad().toPromise();
     this.etlStats.emit(this.stats);
     this.result = await this.reviewService.getReviews().toPromise();
