@@ -18,8 +18,13 @@ export interface Review {
   price: number;
 }
 
-export interface clearResponse {
+export interface ClearResponse {
   finished: boolean;
+}
+
+export interface Statistics {
+  products?: number;
+  reviews: number;
 }
 
 @Injectable({
@@ -32,32 +37,32 @@ export class ReviewService {
     return this.http.get<Review[]>("http://localhost:3000/displayData");
   }
 
-  startETL(product: string): Observable<number> {
+  startETL(product: string): Observable<Statistics> {
     let params = new HttpParams();
     params = params.set("phrase", product).set("pagesToSearch", "1");
-    return this.http.get<number>("http://localhost:3000/etl", {
+    return this.http.get<Statistics>("http://localhost:3000/etl", {
       params: params
     });
   }
 
-  startExtract(product: string): Observable<number> {
+  startExtract(product: string): Observable<Statistics> {
     let params = new HttpParams();
     params = params.set("phrase", product).set("pagesToSearch", "1");
-    return this.http.get<number>("http://localhost:3000/extract", {
+    return this.http.get<Statistics>("http://localhost:3000/extract", {
       params: params
     });
   }
 
-  startTransform(): Observable<number> {
-    return this.http.get<number>("http://localhost:3000/transform");
+  startTransform(): Observable<Statistics> {
+    return this.http.get<Statistics>("http://localhost:3000/transform");
   }
 
-  startLoad(): Observable<number> {
-    return this.http.get<number>("http://localhost:3000/load");
+  startLoad(): Observable<Statistics> {
+    return this.http.get<Statistics>("http://localhost:3000/load");
   }
 
-  clearDatabase(): Observable<clearResponse> {
-    return this.http.get<clearResponse>("http://localhost:3000/clearDb");
+  clearDatabase(): Observable<ClearResponse> {
+    return this.http.get<ClearResponse>("http://localhost:3000/clearDb");
   }
 
   downloadCSV() {

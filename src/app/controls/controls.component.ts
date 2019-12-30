@@ -5,7 +5,11 @@ import {
   ViewChild,
   ElementRef
 } from "@angular/core";
-import { ReviewService, Review } from "../review-service/review.service";
+import {
+  ReviewService,
+  Review,
+  Statistics
+} from "../review-service/review.service";
 
 @Component({
   selector: "app-controls",
@@ -94,7 +98,7 @@ export class ControlsComponent {
   isTransformDisabled = true;
   isLoadDisabled = true;
 
-  stats: number;
+  stats: Statistics;
   result: Review[];
   inputComponent: HTMLElement;
 
@@ -109,8 +113,10 @@ export class ControlsComponent {
       this.stats = await this.reviewService.startETL(value).toPromise();
       this.etlStats.emit(
         "Proces ETL zakończony. Do bazy zaladowano: " +
-          this.stats +
-          " rekordów."
+          this.stats.reviews +
+          " nowych opinii dotyczących " +
+          this.stats.products +
+          " znalezionych produktów."
       );
       this.result = await this.reviewService.getReviews().toPromise();
       this.etlData.emit(this.result);
@@ -130,7 +136,13 @@ export class ControlsComponent {
       this.isProcessing = true;
       this.isStarted.emit(true);
       this.stats = await this.reviewService.startExtract(value).toPromise();
-      this.etlStats.emit("Pobrano " + this.stats + "opinii.");
+      this.etlStats.emit(
+        "Pobrano " +
+          this.stats.reviews +
+          " opinii, dotyczących " +
+          this.stats.products +
+          " znalezionych produktów."
+      );
       this.isDone.emit(true);
       this.isProcessing = false;
       this.isTransformDisabled = false;
@@ -145,7 +157,7 @@ export class ControlsComponent {
     this.isProcessing = true;
     this.isStarted.emit(true);
     this.stats = await this.reviewService.startTransform().toPromise();
-    this.etlStats.emit("Przetransformowano " + this.stats + " rekordów.");
+    this.etlStats.emit("Przetransformowano " + this.stats.reviews + " opinii.");
     this.isDone.emit(true);
     this.isProcessing = false;
     this.isTransformDisabled = true;
@@ -157,7 +169,13 @@ export class ControlsComponent {
     this.isProcessing = true;
     this.isStarted.emit(true);
     this.stats = await this.reviewService.startLoad().toPromise();
-    this.etlStats.emit("Do bazy załadowano " + this.stats + " rekordów.");
+    this.etlStats.emit(
+      "Do bazy zaladowano: " +
+        this.stats.reviews +
+        " nowych opinii dotyczących " +
+        this.stats.products +
+        " znalezionych produktów."
+    );
     this.result = await this.reviewService.getReviews().toPromise();
     this.etlData.emit(this.result);
     this.isDone.emit(true);
