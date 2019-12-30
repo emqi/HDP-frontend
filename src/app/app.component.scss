@@ -1,7 +1,10 @@
 :host {
-  display: grid;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .content-container {
-  margin: 84px 5% 52px 5%;
+  padding: 84px 0px 52px 0px;
+  margin: 0px 5% 0px 5%;
 }
