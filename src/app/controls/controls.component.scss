@@ -3,7 +3,7 @@ mat-toolbar {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  height: 223px;
+  height: 335px;
 }
 
 mat-card {
@@ -55,4 +55,36 @@ mat-card-title {
 
 input {
   font-size: larger;
+}
+
+.request-buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row: 1;
+  grid-column-gap: 10px;
+  padding-top: 20px;
+  button {
+    padding: 10px 0px;
+    span.mat-button-wrap {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-column: 1;
+      * {
+        width: fit-content;
+        height: fit-content;
+      }
+    }
+  }
+}
+
+i {
+  transform: scale(1.5);
+}
+
+.download-csv {
+  color: greenyellow
+}
+
+.clear-database {
+  color: red;
 }

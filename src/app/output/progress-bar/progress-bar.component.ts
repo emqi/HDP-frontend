@@ -10,21 +10,4 @@ import { Component, OnInit, AfterViewInit, HostListener } from "@angular/core";
   `,
   styleUrls: ["./progress-bar.component.scss"]
 })
-export class ProgressBarComponent implements AfterViewInit {
-  
-  @HostListener("window:scroll", [])
-  onWindowScroll() {
-    if (!this. header.classList.contains('sticky') && window.pageYOffset > this.header.offsetTop - 64) {
-      this.header.classList.add("sticky");
-    } else if (window.pageYOffset < 245) {
-      this.header.classList.remove("sticky");
-    }
-  }
-
-  header: HTMLElement;
-  sticky: number;
-
-  ngAfterViewInit() {
-    this.header = document.getElementById("progressContainer");
-  }
-}
+export class ProgressBarComponent {}

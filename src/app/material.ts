@@ -4,7 +4,11 @@ import {
   MatIconModule,
   MatCardModule,
   MatInputModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule
 } from "@angular/material";
 import { NgModule } from "@angular/core";
 
@@ -15,7 +19,11 @@ import { NgModule } from "@angular/core";
     MatIconModule,
     MatCardModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule
   ],
   exports: [
     MatToolbarModule,
@@ -23,7 +31,11 @@ import { NgModule } from "@angular/core";
     MatIconModule,
     MatCardModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}
