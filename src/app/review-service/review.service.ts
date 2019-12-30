@@ -73,11 +73,6 @@ export class ReviewService {
 
   downloadFile(data: any, fileType: string) {
     let blob = new Blob(["\ufeff"+data], { type: fileType });
-    // let url = window.URL.createObjectURL(blob);
-    // let pwa = window.open(url);
-    // if (!pwa || pwa.closed || typeof pwa.closed == "undefined") {
-    //   alert("Please disable your Pop-up blocker and try again.");
-    // }
     var a = window.document.createElement("a");
     a.href = window.URL.createObjectURL(blob);
     a.download = "Database.csv";
