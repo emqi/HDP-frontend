@@ -17,7 +17,7 @@ import { Review } from "../review-service/review.service";
       <app-progress-bar *ngIf="!isDone"></app-progress-bar>
       <div class="content-container">
         <mat-card class="stats" *ngIf="etlStats">{{ etlStats }}</mat-card>
-        <mat-table
+        <mat-table *ngIf="etlData"
           class="lessons-table mat-elevation-z8"
           [dataSource]="etlData"
         >
@@ -45,7 +45,7 @@ import { Review } from "../review-service/review.service";
           </ng-container>
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef>Data wystawienia</th>
-            <td mat-cell *matCellDef="let review">{{ review.date }}</td>
+            <td mat-cell *matCellDef="let review">{{ review.date | date }}</td>
           </ng-container>
           <ng-container matColumnDef="reviewedAfter">
             <th mat-header-cell *matHeaderCellDef>Oceniono po dniach</th>

@@ -178,7 +178,7 @@ export class ControlsComponent {
   }
 
   clearDb() {
-    this.reviewService.clearDatabase();
+    this.reviewService.clearDatabase().toPromise();
   }
 
   // testStats = 123;
