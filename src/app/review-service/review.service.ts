@@ -37,17 +37,17 @@ export class ReviewService {
     return this.http.get<Review[]>("http://localhost:3000/displayData");
   }
 
-  startETL(product: string): Observable<Statistics> {
+  startETL(product: string, pages: number): Observable<Statistics> {
     let params = new HttpParams();
-    params = params.set("phrase", product).set("pagesToSearch", "1");
+    params = params.set("phrase", product).set("pagesToSearch", pages.toString());
     return this.http.get<Statistics>("http://localhost:3000/etl", {
       params: params
     });
   }
 
-  startExtract(product: string): Observable<Statistics> {
+  startExtract(product: string, pages: number): Observable<Statistics> {
     let params = new HttpParams();
-    params = params.set("phrase", product).set("pagesToSearch", "1");
+    params = params.set("phrase", product).set("pagesToSearch", pages.toString());
     return this.http.get<Statistics>("http://localhost:3000/extract", {
       params: params
     });

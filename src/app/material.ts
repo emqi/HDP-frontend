@@ -8,7 +8,8 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule,
+  MatTooltipModule
 } from "@angular/material";
 import { NgModule } from "@angular/core";
 
@@ -23,7 +24,8 @@ import { NgModule } from "@angular/core";
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   exports: [
     MatToolbarModule,
@@ -35,7 +37,8 @@ import { NgModule } from "@angular/core";
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule {}

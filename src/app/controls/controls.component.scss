@@ -57,6 +57,11 @@ input {
   font-size: larger;
 }
 
+.pages-input {
+  width: 5ch;
+  margin-left: 5px;
+}
+
 .request-buttons-container {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -28,6 +28,20 @@ import {
                 type="search"
                 [disabled]="isProcessing"
               />
+              <input
+                id="pagesInput"
+                #pagesInput
+                class="pages-input"
+                matInput
+                value="1"
+                max="999"
+                min="1"
+                type="number"
+                [disabled]="isProcessing"
+                matTooltip="Liczba stron do przeszukania"
+                matTooltipPosition="right"
+                onfocus="blur()"
+              />
             </div>
             <div class="buttons-container">
               <button
@@ -92,6 +106,7 @@ export class ControlsComponent {
   @Output() isDone = new EventEmitter<boolean>();
 
   @ViewChild("input", { static: false }) input: ElementRef;
+  @ViewChild("pagesInput", { static: false }) pagesInput: ElementRef;
 
   isProcessing = false;
   isInputDisabled = false;
@@ -108,9 +123,10 @@ export class ControlsComponent {
     this.cleanOutput();
     if (this.input.nativeElement.value) {
       const value = this.input.nativeElement.value as string;
+      const pages = this.pagesInput.nativeElement.value as number;
       this.isProcessing = true;
       this.isStarted.emit(true);
-      this.stats = await this.reviewService.startETL(value).toPromise();
+      this.stats = await this.reviewService.startETL(value, pages).toPromise();
       this.etlStats.emit(
         "Proces ETL zakończony. Do bazy zaladowano: " +
           this.stats.reviews +
@@ -133,9 +149,10 @@ export class ControlsComponent {
     this.cleanOutput();
     if (this.input.nativeElement.value) {
       const value = this.input.nativeElement.value as string;
+      const pages = this.pagesInput.nativeElement.value as number;
       this.isProcessing = true;
       this.isStarted.emit(true);
-      this.stats = await this.reviewService.startExtract(value).toPromise();
+      this.stats = await this.reviewService.startExtract(value, pages).toPromise();
       this.etlStats.emit(
         "Pobrano " +
           this.stats.reviews +
