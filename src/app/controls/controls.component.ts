@@ -3,13 +3,15 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  ElementRef
+  ElementRef,
+  OnInit
 } from "@angular/core";
 import {
   ReviewService,
   Review,
   Statistics
 } from "../review-service/review.service";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-controls",
@@ -37,10 +39,10 @@ import {
                 max="999"
                 min="1"
                 type="number"
-                [disabled]="isProcessing"
                 matTooltip="Liczba stron do przeszukania"
                 matTooltipPosition="right"
-                onfocus="blur()"
+                [formControl]="control"
+                [disableControl]="isProcessing"
               />
             </div>
             <div class="buttons-container">
@@ -98,7 +100,7 @@ import {
   `,
   styleUrls: ["./controls.component.scss"]
 })
-export class ControlsComponent {
+export class ControlsComponent implements OnInit {
   @Output() isStarted = new EventEmitter<boolean>();
   @Output() etlStats = new EventEmitter<string>();
   @Output() etlData = new EventEmitter<Review[]>();
@@ -117,11 +119,25 @@ export class ControlsComponent {
   result: Review[];
   inputComponent: HTMLElement;
 
+  control = new FormControl(0, [Validators.min(1), Validators.max(999)]);
+
   constructor(private reviewService: ReviewService) {}
+
+  ngOnInit() {
+    this.control.valueChanges.subscribe(value => {
+      console.log(value)
+      if (value > 999) {
+        this.control.setValue(999, { emitEvent: false });
+      }
+      if (value < 0) {
+        this.control.setValue(0, { emitEvent: false });
+      }
+    });
+  }
 
   async onFullProcessClick() {
     this.cleanOutput();
-    if (this.input.nativeElement.value) {
+    if (this.input.nativeElement.value && this.pagesInput.nativeElement.value) {
       const value = this.input.nativeElement.value as string;
       const pages = this.pagesInput.nativeElement.value as number;
       this.isProcessing = true;
@@ -147,12 +163,14 @@ export class ControlsComponent {
 
   async onExtractClick() {
     this.cleanOutput();
-    if (this.input.nativeElement.value) {
+    if (this.input.nativeElement.value && this.pagesInput.nativeElement.value) {
       const value = this.input.nativeElement.value as string;
       const pages = this.pagesInput.nativeElement.value as number;
       this.isProcessing = true;
       this.isStarted.emit(true);
-      this.stats = await this.reviewService.startExtract(value, pages).toPromise();
+      this.stats = await this.reviewService
+        .startExtract(value, pages)
+        .toPromise();
       this.etlStats.emit(
         "Pobrano " +
           this.stats.reviews +

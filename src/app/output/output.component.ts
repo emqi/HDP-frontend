@@ -6,7 +6,7 @@ import { Review } from "../review-service/review.service";
   template: `
     <div class="default-container" *ngIf="!isStarted">
       <span class="warning" *ngIf="showWarning"
-        >Podaj poszukiwany produkt.</span
+        >Podaj poszukiwany produkt oraz liczbę stron w zakresie 1-999.</span
       >
       <span class="info"
         >Rozpocznij proces ETL lub jeden z jego pojedynczych kroków za pomoca

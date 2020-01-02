@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ControlsComponent } from './controls/controls.component';
 import { OutputComponent } from './output/output.component';
 import { ProgressBarComponent } from './output/progress-bar/progress-bar.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DisableControlDirective } from './disable-control/disable-control.directive';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,17 @@ import { ProgressBarComponent } from './output/progress-bar/progress-bar.compone
     FooterComponent,
     ControlsComponent,
     OutputComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    DisableControlDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
