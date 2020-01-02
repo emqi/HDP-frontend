@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from "@angular/core";
-import { Review } from "../review-service/review.service";
+import { Review, ReviewService } from "../review-service/review.service";
 
 @Component({
   selector: "app-output",
@@ -19,7 +19,8 @@ import { Review } from "../review-service/review.service";
         <div class="stats-container" *ngIf="etlStats">
           <mat-card class="stats">{{ etlStats }}</mat-card>
         </div>
-        <mat-table *ngIf="etlData"
+        <mat-table
+          *ngIf="etlData"
           class="lessons-table mat-elevation-z8"
           [dataSource]="etlData"
         >
@@ -83,6 +84,12 @@ import { Review } from "../review-service/review.service";
             <th mat-header-cell *matHeaderCellDef>Cena produktu</th>
             <td mat-cell *matCellDef="let review">{{ review.price }}</td>
           </ng-container>
+          <ng-container matColumnDef="download" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>Pobierz .txt</th>
+            <td mat-cell *matCellDef="let row">
+              <a mat-button (click)="downloadTxt(row)">Download</a>
+            </td>
+          </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
         </mat-table>
@@ -111,6 +118,57 @@ export class OutputComponent {
     "productId",
     "prodName",
     "description",
-    "price"
+    "price",
+    "download"
   ];
+
+  downloadTxt(review: Review) {
+    let data =
+      "Id recenzji: " +
+      review.id.trim() +
+      "\n" +
+      "Nazwa użykownika: " +
+      review.reviewerusername.trim() +
+      "\n" +
+      "Ocena: " +
+      review.rating +
+      "\n" +
+      "Głosy za: " +
+      review.upvotes +
+      "\n" +
+      "Głosy przeciw: " +
+      review.downvotes +
+      "\n" +
+      "Data wystawienia: " +
+      review.date.trim() +
+      "\n" +
+      "Oceniono po dniach: " +
+      review.reviewedafter.trim() +
+      "\n" +
+      "Treść opinii: " +
+      review.content.trim() +
+      "\n" +
+      "Czy recenzujący kupił produkt: " +
+      review.reviewerboughtproduct +
+      "\n" +
+      "Id produktu: " +
+      review.productid.trim() +
+      "\n" +
+      "Nazwa produktu: " +
+      review.name.trim() +
+      "\n" +
+      "Opis produktu: " +
+      review.description.trim() +
+      "\n" +
+      "Cena produktu: " +
+      review.price +
+      "\n";
+    let blob = new Blob(["\ufeff" + data], { type: "text/plain" });
+    var a = window.document.createElement("a");
+    a.href = window.URL.createObjectURL(blob);
+    a.download = review.id + ".txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 }

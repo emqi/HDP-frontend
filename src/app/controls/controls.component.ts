@@ -125,7 +125,6 @@ export class ControlsComponent implements OnInit {
 
   ngOnInit() {
     this.control.valueChanges.subscribe(value => {
-      console.log(value)
       if (value > 999) {
         this.control.setValue(999, { emitEvent: false });
       }
