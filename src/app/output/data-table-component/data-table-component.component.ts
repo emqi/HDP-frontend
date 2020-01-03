@@ -16,7 +16,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
         </th>
         <td mat-cell *matCellDef="let review">{{ review.id }}</td>
       </ng-container>
-      <ng-container matColumnDef="username">
+      <ng-container matColumnDef="reviewerusername">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Nazwa użytkownika
         </th>
@@ -60,7 +60,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
         </th>
         <td mat-cell *matCellDef="let review">{{ review.content }}</td>
       </ng-container>
-      <ng-container matColumnDef="bought">
+      <ng-container matColumnDef="reviewerboughtproduct">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Czy recenzujący kupił produkt
         </th>
@@ -68,13 +68,13 @@ import { MatTableDataSource, MatSort } from '@angular/material';
           {{ review.reviewerboughtproduct }}
         </td>
       </ng-container>
-      <ng-container matColumnDef="productId">
+      <ng-container matColumnDef="productid">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Id produktu
         </th>
         <td mat-cell *matCellDef="let review">{{ review.productid }}</td>
       </ng-container>
-      <ng-container matColumnDef="prodName">
+      <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Nazwa produktu
         </th>
@@ -117,16 +117,16 @@ export class DataTableComponentComponent {
 
   displayedColumns: string[] = [
     "id",
-    "username",
+    "reviewerusername",
     "rating",
     "upvotes",
     "downvotes",
     "date",
     "reviewedAfter",
     "content",
-    "bought",
-    "productId",
-    "prodName",
+    "reviewerboughtproduct",
+    "productid",
+    "name",
     "description",
     "price",
     "download"
