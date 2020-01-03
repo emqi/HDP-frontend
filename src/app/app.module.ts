@@ -13,6 +13,7 @@ import { OutputComponent } from './output/output.component';
 import { ProgressBarComponent } from './output/progress-bar/progress-bar.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DisableControlDirective } from './disable-control/disable-control.directive';
+import { DataTableComponentComponent } from './output/data-table-component/data-table-component.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DisableControlDirective } from './disable-control/disable-control.direc
     ControlsComponent,
     OutputComponent,
     ProgressBarComponent,
-    DisableControlDirective
+    DisableControlDirective,
+    DataTableComponentComponent
   ],
   imports: [
     BrowserModule,
