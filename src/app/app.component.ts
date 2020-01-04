@@ -5,15 +5,15 @@ import { Review } from "./review-service/review.service";
   selector: "app-root",
   template: `
     <app-header></app-header>
-    <div class="content-container mat-elevation-z1">
-      <app-controls
+    <div class="content-container">
+      <app-controls class="mat-elevation-z1"
         (isStarted)="isStarted = $event"
         (etlStats)="etlStats = $event"
         (etlData)="etlData = $event"
         (showWarning)="showWarning = $event"
         (isDone)="isDone = $event"
       ></app-controls>
-      <app-output
+      <app-output class="mat-elevation-z1"
         [isStarted]="isStarted"
         [etlStats]="etlStats"
         [etlData]="etlData"

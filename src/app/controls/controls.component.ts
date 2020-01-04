@@ -22,28 +22,30 @@ import { FormControl, Validators } from "@angular/forms";
           <mat-card-title>Panel kontrolny</mat-card-title>
           <mat-card-content>
             <div class="input-container">
-              <input
-                id="input"
-                #input
-                matInput
-                placeholder="Szukany produkt"
-                type="search"
-                [disabled]="isProcessing"
-              />
-              <input
-                id="pagesInput"
-                #pagesInput
-                class="pages-input"
-                matInput
-                value="1"
-                max="999"
-                min="1"
-                type="number"
-                matTooltip="Liczba stron do przeszukania"
-                matTooltipPosition="right"
-                [formControl]="control"
-                [disableControl]="isProcessing"
-              />
+              <mat-form-field floatLabel="always">
+                <input
+                  id="input"
+                  #input
+                  matInput
+                  placeholder="Szukany produkt:"
+                  type="search"
+                  [disabled]="isProcessing"
+                />
+              </mat-form-field>
+              <mat-form-field class="pages-input" floatLabel="always">
+                <input
+                  id="pagesInput"
+                  #pagesInput
+                  matInput
+                  value="1"
+                  max="999"
+                  min="1"
+                  type="number"
+                  [formControl]="control"
+                  [disableControl]="isProcessing"
+                  placeholder="Stron:"
+                />
+              </mat-form-field>
             </div>
             <div class="buttons-container">
               <button
@@ -129,9 +131,15 @@ export class ControlsComponent implements OnInit {
         this.control.setValue(999, { emitEvent: false });
       }
       if (value < 0) {
-        this.control.setValue(0, { emitEvent: false });
+        this.control.setValue(1, { emitEvent: false });
+      }
+      if (value == 0) {
+        this.control.setValue(1, { emitEvent: false });
       }
     });
+    setTimeout(() => {
+      document.getElementById('input').click();
+    }, 0);
   }
 
   async onFullProcessClick() {
@@ -232,161 +240,4 @@ export class ControlsComponent implements OnInit {
   clearDb() {
     this.reviewService.clearDatabase().toPromise();
   }
-
-  // testStats = 123;
-  // testReviews: Review[] = [
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   },
-  //   {
-  //     id: "76441367",
-  //     reviewerusername: "sulks",
-  //     rating: 4,
-  //     upvotes: 0,
-  //     downvotes: 0,
-  //     date: "2019-07-01T22:00:00.000Z",
-  //     reviewedafter: "2655012000",
-  //     content:
-  //       "Naprawdę warte polecenia urządzenie. Zdjęcia z wakacji fantastyczne.",
-  //     reviewerboughtproduct: true,
-  //     productid: "76441367",
-  //     name: " Samsung Galaxy S10 Plus SM-G975 128GB Prism White",
-  //     description:
-  //       "Smartfon z ekranem 6,4 cala. Aparat 16 Mpix, pamięć 8 GB RAM\n\t\t",
-  //     price: 3038
-  //   }
-  // ];
 }

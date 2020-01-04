@@ -1,10 +1,20 @@
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { Review } from "src/app/review-service/review.service";
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
 
 @Component({
   selector: "app-data-table-component",
   template: `
+    <div class="input-filter">
+      <mat-form-field floatLabel="always" class="input-form">
+        <input
+          matInput
+          type="text"
+          (keyup)="filter($event.target.value)"
+          placeholder="Filtruj:"
+        />
+      </mat-form-field>
+    </div>
     <mat-table
       class="lessons-table mat-elevation-z8"
       [dataSource]="dataSource"
@@ -101,6 +111,11 @@ import { MatTableDataSource, MatSort } from '@angular/material';
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
+    <mat-paginator
+      [length]="etlData?.length"
+      [pageSize]="50"
+      [pageSizeOptions]="[10, 20, 50, 100, 500]"
+    ></mat-paginator>
   `,
   styleUrls: ["./data-table-component.component.scss"]
 })
@@ -108,11 +123,13 @@ export class DataTableComponentComponent {
   @Input() etlData: Review[];
 
   dataSource: MatTableDataSource<Review>;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.etlData);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   displayedColumns: string[] = [
@@ -153,7 +170,7 @@ export class DataTableComponentComponent {
       review.date.trim() +
       "\n" +
       "Oceniono po dniach: " +
-      (review.reviewedafter ? review.reviewedafter.trim() : 'B/D') +
+      (review.reviewedafter ? review.reviewedafter.trim() : "B/D") +
       "\n" +
       "Treść opinii: " +
       review.content.trim() +
@@ -180,5 +197,9 @@ export class DataTableComponentComponent {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+  }
+
+  filter(value: string){
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 }

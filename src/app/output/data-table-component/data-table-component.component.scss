@@ -34,3 +34,18 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.input-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+input {
+  font-size: x-large;
+}
+
+.input-form {
+  width: 50vh;
+}
