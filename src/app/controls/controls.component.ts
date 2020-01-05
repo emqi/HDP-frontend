@@ -142,7 +142,7 @@ export class ControlsComponent implements OnInit {
       }
     });
     setTimeout(() => {
-      document.getElementById('input').click();
+      document.getElementById("input").click();
     }, 0);
   }
 
@@ -244,6 +244,8 @@ export class ControlsComponent implements OnInit {
   clearDb() {
     this.reviewService.clearDatabase().toPromise();
     this.etlData.emit(null);
+    this.isTransformDisabled = true;
+    this.isLoadDisabled = true;
   }
 
   async viewData() {
