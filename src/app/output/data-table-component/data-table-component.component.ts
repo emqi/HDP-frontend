@@ -56,7 +56,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
         </th>
         <td mat-cell *matCellDef="let review">{{ review.date | date }}</td>
       </ng-container>
-      <ng-container matColumnDef="reviewedAfter">
+      <ng-container matColumnDef="reviewedafter">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Oceniono po dniach
         </th>
@@ -139,7 +139,7 @@ export class DataTableComponentComponent {
     "upvotes",
     "downvotes",
     "date",
-    "reviewedAfter",
+    "reviewedafter",
     "content",
     "reviewerboughtproduct",
     "productid",
