@@ -70,11 +70,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .request-buttons-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-row: 1;
-  grid-column-gap: 10px;
+  grid-column-gap: 5px;
   padding-top: 20px;
   button {
+    width: 100px;
     padding: 10px 0px;
     span.mat-button-wrap {
       display: grid;

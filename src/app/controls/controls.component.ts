@@ -90,6 +90,10 @@ import { FormControl, Validators } from "@angular/forms";
                 <i class="material-icons download-csv">cloud_download</i>
                 <div>Pobierz .CSV</div>
               </button>
+              <button mat-raised-button color="primary" (click)="viewData()">
+                <i class="material-icons">list</i>
+                <div>Zobacz dane</div>
+              </button>
               <button mat-raised-button color="primary" (click)="clearDb()">
                 <i class="material-icons clear-database">clear</i>
                 <div>Wyczyść bazę</div>
@@ -239,5 +243,16 @@ export class ControlsComponent implements OnInit {
 
   clearDb() {
     this.reviewService.clearDatabase().toPromise();
+    this.etlData.emit(null);
+  }
+
+  async viewData() {
+    this.cleanOutput();
+    this.isProcessing = true;
+    this.isStarted.emit(true);
+    this.result = await this.reviewService.getReviews().toPromise();
+    this.etlData.emit(this.result);
+    this.isProcessing = false;
+    this.isDone.emit(true);
   }
 }
